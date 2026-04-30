@@ -1,0 +1,107 @@
+[
+  {
+    "AlarmName": "HealthcareERP-EC2-CPUUtilization-High",
+    "AlarmDescription": "EC2 CPU utilization above 80% for 2 consecutive periods",
+    "MetricName": "CPUUtilization",
+    "Namespace": "AWS/EC2",
+    "Statistic": "Average",
+    "Period": 300,
+    "EvaluationPeriods": 2,
+    "Threshold": 80,
+    "ComparisonOperator": "GreaterThanThreshold",
+    "TreatMissingData": "notBreaching",
+    "Dimensions": [
+      {
+        "Name": "InstanceId",
+        "Value": "<EC2_INSTANCE_ID>"
+      }
+    ],
+    "AlarmActions": [
+      "arn:aws:sns:<REGION>:<ACCOUNT_ID>:<ALERT_TOPIC>"
+    ]
+  },
+  {
+    "AlarmName": "HealthcareERP-EC2-StatusCheckFailed",
+    "AlarmDescription": "EC2 status check failure detected",
+    "MetricName": "StatusCheckFailed",
+    "Namespace": "AWS/EC2",
+    "Statistic": "Maximum",
+    "Period": 60,
+    "EvaluationPeriods": 2,
+    "Threshold": 1,
+    "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+    "TreatMissingData": "breaching",
+    "Dimensions": [
+      {
+        "Name": "InstanceId",
+        "Value": "<EC2_INSTANCE_ID>"
+      }
+    ],
+    "AlarmActions": [
+      "arn:aws:sns:<REGION>:<ACCOUNT_ID>:<ALERT_TOPIC>"
+    ]
+  },
+  {
+    "AlarmName": "HealthcareERP-RDS-CPUUtilization-High",
+    "AlarmDescription": "RDS CPU utilization above 75%",
+    "MetricName": "CPUUtilization",
+    "Namespace": "AWS/RDS",
+    "Statistic": "Average",
+    "Period": 300,
+    "EvaluationPeriods": 2,
+    "Threshold": 75,
+    "ComparisonOperator": "GreaterThanThreshold",
+    "TreatMissingData": "notBreaching",
+    "Dimensions": [
+      {
+        "Name": "DBInstanceIdentifier",
+        "Value": "<RDS_INSTANCE_IDENTIFIER>"
+      }
+    ],
+    "AlarmActions": [
+      "arn:aws:sns:<REGION>:<ACCOUNT_ID>:<ALERT_TOPIC>"
+    ]
+  },
+  {
+    "AlarmName": "HealthcareERP-RDS-FreeStorageSpace-Low",
+    "AlarmDescription": "RDS free storage below 10GB",
+    "MetricName": "FreeStorageSpace",
+    "Namespace": "AWS/RDS",
+    "Statistic": "Average",
+    "Period": 300,
+    "EvaluationPeriods": 2,
+    "Threshold": 10737418240,
+    "ComparisonOperator": "LessThanThreshold",
+    "TreatMissingData": "breaching",
+    "Dimensions": [
+      {
+        "Name": "DBInstanceIdentifier",
+        "Value": "<RDS_INSTANCE_IDENTIFIER>"
+      }
+    ],
+    "AlarmActions": [
+      "arn:aws:sns:<REGION>:<ACCOUNT_ID>:<ALERT_TOPIC>"
+    ]
+  },
+  {
+    "AlarmName": "HealthcareERP-RDS-DatabaseConnections-High",
+    "AlarmDescription": "RDS active connections above 100",
+    "MetricName": "DatabaseConnections",
+    "Namespace": "AWS/RDS",
+    "Statistic": "Average",
+    "Period": 300,
+    "EvaluationPeriods": 2,
+    "Threshold": 100,
+    "ComparisonOperator": "GreaterThanThreshold",
+    "TreatMissingData": "notBreaching",
+    "Dimensions": [
+      {
+        "Name": "DBInstanceIdentifier",
+        "Value": "<RDS_INSTANCE_IDENTIFIER>"
+      }
+    ],
+    "AlarmActions": [
+      "arn:aws:sns:<REGION>:<ACCOUNT_ID>:<ALERT_TOPIC>"
+    ]
+  }
+]
